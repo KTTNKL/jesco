@@ -19,6 +19,7 @@ const productSchema = new mongoose.Schema({
   dimensions: String,
   materials: String,
   review: Number,
+  gen: String,
 });
 const product = mongoose.model("Product", productSchema);
 
