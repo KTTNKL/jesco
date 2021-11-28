@@ -1,0 +1,1 @@
+DATABASE=mongodb+srv://ktuong:123@cluster0.wdhew.mongodb.net/shoppper?retryWrites=true&w=majority
