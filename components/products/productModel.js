@@ -15,6 +15,10 @@ const productSchema = new mongoose.Schema({
   gender: String,
   image: [String],
   sale: { type: Number, default: 0 },
+  weight: Number,
+  dimensions: String,
+  materials: String,
+  review: Number,
 });
 const product = mongoose.model("Product", productSchema);
 

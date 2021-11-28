@@ -66,25 +66,14 @@
                 </div>
                 <div class="col-lg-6 col-sm-12 col-xs-12" data-aos="fade-up" data-aos-delay="200">
                     <div class="product-details-content quickview-content">
-                        <h2>Ardene Microfiber Tights</h2>
+                       
+                        <h2>{{product.name}}</h2>
                         <div class="pricing-meta">
                             <ul>
-                                <li class="old-price not-cut">$18.90</li>
+                                <li class="old-price not-cut">$ {{product.price}}</li>
                             </ul>
                         </div>
-                        <div class="pro-details-rating-wrap">
-                            <div class="rating-product">
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                                <i class="fa fa-star"></i>
-                            </div>
-                            <span class="read-review"><a class="reviews" href="#">( 5 Customer Review )</a></span>
-                        </div>
-                        <p class="mt-30px mb-0">Lorem ipsum dolor sit amet, consect adipisicing elit, sed do eiusmod tempor incidi ut labore
-                            et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercita ullamco laboris nisi
-                            ut aliquip ex ea commodo </p>
+                        <p class="mt-30px mb-0">{{product.description}} </p>
                         <div class="pro-details-quality">
                             <div class="cart-plus-minus">
                                 <input class="cart-plus-minus-box" type="text" name="qtybutton" value="1" />
@@ -96,43 +85,19 @@
 
                         </div>
                         <div class="pro-details-sku-info pro-details-same-style  d-flex">
-                            <span>SKU: </span>
-                            <ul class="d-flex">
-                                <li>
-                                    <a href="#">Ch-256xl</a>
-                                </li>
-                            </ul>
+                            <span>Brand: {{product.brand}} </span>
                         </div>
                         <div class="pro-details-categories-info pro-details-same-style d-flex">
-                            <span>Categories: </span>
-                            <ul class="d-flex">
-                                <li>
-                                    <a href="#">Fashion.</a>
-                                </li>
-                                <li>
-                                    <a href="#">eCommerce</a>
-                                </li>
-                            </ul>
+                            <span>Categories: {{product.category}}</span>
                         </div>
-                        <div class="pro-details-social-info pro-details-same-style d-flex">
-                            <span>Share: </span>
-                            <ul class="d-flex">
-                                <li>
-                                    <a href="#"><i class="fa fa-facebook"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-twitter"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-google"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-youtube"></i></a>
-                                </li>
-                                <li>
-                                    <a href="#"><i class="fa fa-instagram"></i></a>
-                                </li>
-                            </ul>
+                        <div class="pro-details-categories-info pro-details-same-style  d-flex">
+                            <span>Gender: {{product.gender}}</span>
+                        </div>
+                        <div class="pro-details-categories-info pro-details-same-style  d-flex">
+                            <span>Sale: {{product.sale}} %</span>
+                        </div>
+                        <div class="pro-details-categories-info pro-details-same-style  d-flex">
+                            <span>Availability: {{product.availability}}</span>
                         </div>
                     </div>
                 </div>
@@ -146,40 +111,20 @@
         <div class="container">
             <div class="description-review-wrapper">
                 <div class="description-review-topbar nav">
-                    <a data-bs-toggle="tab" href="#des-details2">Information</a>
-                    <a class="active" data-bs-toggle="tab" href="#des-details1">Description</a>
+                    <a data-bs-toggle="tab" href="#des-details2">Information</a>                
                     <a data-bs-toggle="tab" href="#des-details3">Reviews (02)</a>
                 </div>
                 <div class="tab-content description-review-bottom">
                     <div id="des-details2" class="tab-pane">
                         <div class="product-anotherinfo-wrapper text-start">
                             <ul>
-                                <li><span>Weight</span> 400 g</li>
-                                <li><span>Dimensions</span>10 x 10 x 15 cm</li>
-                                <li><span>Materials</span> 60% cotton, 40% polyester</li>
-                                <li><span>Other Info</span> American heirloom jean shorts pug seitan letterpress</li>
+                                <li><span>Weight</span> {{product.weight}} g</li>
+                                <li><span>Dimensions</span> {{product.dimensions}}</li>
+                                <li><span>Materials</span> {{product.materials}}</li>
                             </ul>
                         </div>
                     </div>
-                    <div id="des-details1" class="tab-pane active">
-                        <div class="product-description-wrapper">
-                            <p>
-
-                                Lorem ipsum dolor sit amet, consectetur adipisi elit, incididunt ut labore et. Ut enim
-                                ad minim veniam, quis nostrud exercita ullamco laboris nisi ut aliquip ex ea commol
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore
-                                eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa
-                                qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste
-                                natus error sit voluptatem accusantiulo doloremque laudantium, totam rem aperiam, eaque
-                                ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt
-                                explicabo. Nemo enim ipsam voluptat quia voluptas sit aspernatur aut odit aut fugit, sed
-                                quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro
-                                quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed
-                                quia non numquam eius modi tempora incidunt ut labore
-
-                            </p>
-                        </div>
-                    </div>
+ 
                     <div id="des-details3" class="tab-pane">
                         <div class="row">
                             <div class="col-lg-7">
