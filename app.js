@@ -7,8 +7,9 @@ var logger = require("morgan");
 var indexRouter = require("./routes/index");
 var loginRouter = require("./routes/login");
 var registerRouter = require("./routes/register");
+
 var productRouter = require("./components/products");
-var productDetailRouter = require("./routes/product_detail");
+
 var contactRouter = require("./routes/contact");
 var cartRouter = require("./routes/cart");
 var aboutRouter = require("./routes/about");
@@ -25,13 +26,16 @@ app.use(logger("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
+
 app.use(express.static(path.join(__dirname, "public")));
+
+app.use("/product", express.static(path.join(__dirname, "public")));
 
 app.use("/", indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/product", productRouter);
-app.use("/product_detail", productDetailRouter);
+
 app.use("/contact", contactRouter);
 app.use("/cart", cartRouter);
 app.use("/about", aboutRouter);

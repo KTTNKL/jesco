@@ -6,8 +6,8 @@ exports.list = async function (req, res) {
   res.render("product", { products });
 };
 
-// exports.item = async function (req, res) {
-//   const product = await productService.viewOne(ObjectId(req.params.id));
+exports.item = async function (req, res) {
+  const product = await productService.viewOne(ObjectId(req.params.id));
 
-//   res.render("product_detail", { product });
-// };
+  res.render("product_detail", { product });
+};
