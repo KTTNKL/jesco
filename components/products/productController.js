@@ -4,7 +4,7 @@ exports.list = async function (req, res) {
   const products = await productService.listProducts(req.query.page);
   let totalPage = await productService.totalProductNum();
   totalPage = Math.ceil(totalPage / 3);
-  console.log(totalPage);
+  console.log(products);
   res.render("product", {
     page: req.query.page, // Current Page
     totalPage, // Total Page

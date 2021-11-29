@@ -69,7 +69,7 @@
                         <div class="col-md-5 col-lg-5 col-xl-4">
                           <div class="product">
                             <div class="thumb">
-                              <a href="/product_detail" class="image">
+                              <a href="/product/{{id}}" class="image">
 
                                 {{#with image}}
                                   <img src={{0}} alt="Product" />
@@ -85,7 +85,7 @@
 
                               </a>
                               <span class="badges">
-                                <span class="new">New</span>
+                                <span class="new">{{this.gen}}</span>
                               </span>
                             </div>
                           </div>
@@ -97,16 +97,18 @@
                                 <span class="rating-wrap">
                                   <span class="star" style="width: 100%"></span>
                                 </span>
-                                <span class="rating-num">( 5 Review )</span>
+                                <span class="rating-num">(
+                                  {{this.review}}
+                                  Review )</span>
                               </span>
                               <h5 class="title"><a
                                   href="/product_detail"
-                                >Women's Elizabeth Coat</a></h5>
+                                >{{this.name}}</a></h5>
                               <p>{{this.description}}</p>
                             </div>
                             <div class="box-inner">
                               <span class="price">
-                                <span class="new">{{this.price}}</span>
+                                <span class="new">{{this.price}} $</span>
                               </span>
 
                               <button
