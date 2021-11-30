@@ -3,10 +3,10 @@ const PAGE_SIZE = 3;
 exports.listProducts = (page) => {
   console.log(page);
   if (!page) {
-    page = 0;
+    page = 1;
   }
   if (page < 0) {
-    page = 0;
+    page = 1;
   }
   const Skip = (page - 1) * PAGE_SIZE;
   page = parseInt(page);
