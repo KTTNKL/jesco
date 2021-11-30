@@ -1,10 +1,17 @@
 const productService = require("./productService");
 const { ObjectId } = require("mongodb");
 exports.list = async function (req, res) {
-  const products = await productService.listProducts(req.query.page);
+  let page;
+  if (req.query.page === undefined) {
+    page = 1;
+  } else if (req.query.page < 0) {
+    page = 1;
+  } else {
+    page = parseInt(req.query.page);
+  }
+  const products = await productService.listProducts(page);
   let totalPage = await productService.totalProductNum();
   totalPage = Math.ceil(totalPage / 3);
-  console.log(products);
   res.render("product", {
     page: req.query.page, // Current Page
     totalPage, // Total Page
