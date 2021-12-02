@@ -25,16 +25,9 @@
         <!-- Shop Top Area Start -->
         <div class="shop-top-bar d-flex">
           <!-- Left Side start -->
-          <p><span>12</span> Product Found of <span>30</span></p>
+
           <!-- Left Side End -->
-          <div class="shop-tab nav">
-            <a href="#shop-grid" data-bs-toggle="tab">
-              <i class="fa fa-th" aria-hidden="true"></i>
-            </a>
-            <a class="active" href="#shop-list" data-bs-toggle="tab">
-              <i class="fa fa-list" aria-hidden="true"></i>
-            </a>
-          </div>
+
           <!-- Right Side Start -->
           <div class="select-shoing-wrap d-flex align-items-center">
             <div class="shot-product">
@@ -175,57 +168,27 @@
             <h4 class="sidebar-title">Category</h4>
             <div class="sidebar-widget-category">
               <ul>
-                <li><a href="#" class="selected m-0">Accesasories
-                    <span>(6)</span>
-                  </a></li>
-                <li><a href="#" class="">Computer <span>(4)</span> </a></li>
-                <li><a href="#" class="">Covid-19 <span>(2)</span> </a></li>
-                <li><a href="#" class="">Electronics <span>(6)</span> </a></li>
-                <li><a href="#" class="">Frame Sunglasses
-                    <span>(12)</span>
-                  </a></li>
-                <li><a href="#" class="">Furniture <span>(7)</span> </a></li>
-                <li><a href="#" class="">Genuine Leather
-                    <span>(9)</span>
-                  </a></li>
+
+                <li><a href="#" class="">T-Shirt </a></li>
+                <li><a href="#" class="">Jacket </a></li>
+                <li><a href="#" class="">Backpack</a></li>
+                <li><a href="#" class="">Jeans</a></li>
+                <li><a href="#" class="">Shoe </a></li>
+                <li><a href="#" class="">Hoodie</a></li>
+                <li><a href="#" class="">Pant</a></li>
               </ul>
             </div>
           </div>
-          <!-- Sidebar single item -->
-          <div class="sidebar-widget">
-            <h4 class="sidebar-title">Color</h4>
-            <div class="sidebar-widget-list color">
-              <ul>
-                <li><a class="active yellow" href="#"></a></li>
-                <li><a class="black" href="#"></a></li>
-                <li><a class="red" href="#"></a></li>
-                <li><a class="pink" href="#"></a></li>
-              </ul>
-            </div>
-          </div>
-          <!-- Sidebar single item -->
-          <div class="sidebar-widget">
-            <h4 class="sidebar-title">Size</h4>
-            <div class="sidebar-widget-list size">
-              <ul>
-                <li><a class="active-2 gray" href="#">S</a></li>
-                <li><a class="gray" href="#">M</a></li>
-                <li><a class="gray" href="#">L</a></li>
-                <li><a class="gray" href="#">XL</a></li>
-              </ul>
-            </div>
-          </div>
+
           <!-- Sidebar single item -->
           <div class="sidebar-widget tag">
             <h4 class="sidebar-title">Tags</h4>
             <div class="sidebar-widget-tag">
               <ul>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Organic</a></li>
-                <li><a href="#">Old Fashion</a></li>
-                <li><a href="#">Men</a></li>
-                <li><a href="#">Fashion</a></li>
-                <li><a href="#">Dress</a></li>
+                <li><a href="#">Popular</a></li>
+                <li><a href="#">New</a></li>
+                <li><a href="#">Hot</a></li>
+                <li><a href="#">Limited</a></li>
               </ul>
             </div>
           </div>
@@ -235,7 +198,7 @@
               <img src="assets/images/banner/2.jpg" alt="" />
               <div class="item-disc">
                 <h2 class="title">#bestsellers</h2>
-                <a href="/product_detail" class="shop-link">Shop Now</a>
+                <a href="/product" class="shop-link">Shop Now</a>
               </div>
             </div>
           </div>
@@ -249,13 +212,16 @@
 <script type="text/javascript">
 
   const element = document.querySelector(".pagination ul"); let totalPages =
-  {{{totalPage}}}; let page =
-  {{{page}}}; element.innerHTML = createPagination(totalPages, page); function
-  createPagination(totalPages, page){ let liTag = ''; let active; let beforePage
-  = page - 1; let afterPage = page + 1; if(page > 1){ liTag += `<li class="btn
-  prev" onclick="location.href='/product/?page=${page -
-  1}'"><span>Prev</span></li>`; } if(page > 2){ liTag += `<li class="first numb"
-  onclick="location.href='/product/?page=1'"><span>1</span></li>`; if(page > 3){
+  {{totalPage}}; let page =
+  {{page}}; let keyword = "{{keyword}}" !=0?"&"+"{{keyword}}":" "; let category
+  ="{{category}}"!=0?"&"+"{{category}}" :""; let gen = "{{gen}}"!=0?"&"+ "{{gen}}":"";element.innerHTML
+  = createPagination(totalPages, page); function createPagination(totalPages,
+  page){ let liTag = ''; let active; let beforePage = page - 1; let afterPage =
+  page + 1; if(page > 1){ liTag += `<li class="btn prev"
+  onclick="location.href='/product?page=${page -
+  1}${keyword}'"><span>Prev</span></li>`; } if(page > 2){ liTag += `<li
+  class="first numb"
+  onclick="location.href='/product?page=1'"><span>1</span></li>`; if(page > 3){
   liTag += `<li class="dots"><span>...</span></li>`; } } if (page == totalPages)
   { beforePage = beforePage - 2; } else if (page == totalPages - 1) { beforePage
   = beforePage - 1; } if (page == 1) { afterPage = afterPage + 2; } else if
@@ -263,12 +229,12 @@
   plength <= afterPage; plength++) { if (plength > totalPages) { continue; } if
   (plength == 0) { plength = plength + 1; } if(page == plength){ active =
   "active"; }else{ active = ""; } liTag += `<li class="numb ${active}"
-  onclick="location.href='/product/?page=${plength}'"><span>${plength}</span></li>`;
+  onclick="location.href='/product?page=${plength}'"><span>${plength}</span></li>`;
   } if(page < totalPages - 1){ if(page < totalPages - 2){ liTag += `<li
   class="dots"><span>...</span></li>`; } liTag += `<li class="last numb"
-  onclick="location.href='/product/?page=${totalPages}'"><span>${totalPages}</span></li>`;
+  onclick="location.href='/product?page=${totalPages}'"><span>${totalPages}</span></li>`;
   } if (page < totalPages) { liTag += `<li class="btn next"
-  onclick="location.href='/product/?page=${page + 1}'"><span>Next <i class="fas
+  onclick="location.href='/product?page=${page + 1}'"><span>Next <i class="fas
   fa-angle-right"></i></span></li>`; } element.innerHTML = liTag; return liTag;
   }
 </script>
