@@ -6,7 +6,6 @@ var logger = require("morgan");
 const session = require("express-session");
 var indexRouter = require("./routes/index");
 
-
 var productRouter = require("./components/products");
 
 var contactRouter = require("./routes/contact");
@@ -14,16 +13,19 @@ var cartRouter = require("./routes/cart");
 var aboutRouter = require("./routes/about");
 var checkoutRouter = require("./routes/checkout");
 var accountRouter = require("./routes/account");
-const authRouter = require('./components/auth');
-const loggedInUserGuard = require('./middlewares/loggedInUserGuard');
 
-const passport = require('./passport')
+const authRouter = require("./components/auth");
+const loggedInUserGuard = require("./middlewares/loggedInUserGuard");
+
+const passport = require("./passport");
 
 var app = express();
 
-
 // view engine setup
-app.set("views", [path.join(__dirname, "views"), path.join(__dirname, "components")]);
+app.set("views", [
+  path.join(__dirname, "views"),
+  path.join(__dirname, "components"),
+]);
 app.set("view engine", "hbs");
 
 app.use(logger("dev"));
@@ -37,17 +39,16 @@ app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function(req, res, next){
+app.use(function (req, res, next) {
   res.locals.user = req.user;
+
   next();
-})
+});
 
-
-
+app.use("/", authRouter);
+app.use("/", indexRouter);
 app.use("/product", express.static(path.join(__dirname, "public")));
 
-app.use("/", indexRouter);
-app.use("/", authRouter);
 app.use("/product", productRouter);
 
 app.use("/contact", contactRouter);
