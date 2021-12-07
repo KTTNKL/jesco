@@ -64,7 +64,13 @@
                     <!-- Header Action Start -->
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
-                            <a href="/login">Sign In</a>
+                            {{#if user}}
+                                Hello, {{user.username}}
+                                <a href="/logout">Sign Out</a>
+                            {{else}}
+                                <a href="/login">Sign In</a>
+                            {{/if}}
+                            
                             <!-- Single Wedge Start -->
                             <a href="#" class="header-action-btn" data-bs-toggle="modal" data-bs-target="#searchActive">
                                 <i class="pe-7s-search"></i>

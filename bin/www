@@ -5,13 +5,13 @@
  */
 const monoogse = require("mongoose");
 const dotev = require("dotenv");
-const app = require("../app");
+
 const debug = require("debug")("shopper:server");
 const http = require("http");
 dotev.config({ path: "./config.evn" });
 
 const DB = process.env.DATABASE;
-
+const app = require("../app");
 monoogse
   .connect(DB)
   .then(() => {
