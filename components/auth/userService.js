@@ -19,3 +19,17 @@ exports.register= async(username, email, password)=>{
         password: passwordHash
     });
 }
+
+exports.update = (user)=>{
+    console.log(user);
+    userModel.findOneAndUpdate(
+        {_id: user._id},
+        user,
+        { new: true },
+        (err, doc) => {
+          if (err) {
+            console.log(err);
+          }       
+        }  
+    );
+};
