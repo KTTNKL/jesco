@@ -47,9 +47,38 @@ exports.list = async function (req, res) {
 exports.item = async function (req, res) {
   try {
     const product = await productService.viewOne(ObjectId(req.params.id));
-
+    product._id = product._id.toString();
+    console.log(product);
     res.render("products/views/product_detail", { product });
   } catch {
     res.render("error");
   }
 };
+
+exports.review = async function(req,res){
+  console.log(req.params.id);
+  const product = req.body;
+  currentProduct =await productService.viewOne(req.params.id);
+  try{
+    console.log(product["name"]);
+    console.log(currentProduct);
+    console.log(currentProduct.review_detail);
+    if(currentProduct.review_detail === undefined)
+    {
+      currentProduct.review_detail =new Array();
+    }
+    
+    console.log(currentProduct.review_detail);
+    var feed = {username: product["name"] , comment:product["your_review"] };
+    currentProduct.review_detail.push(feed);
+    currentProduct.review = currentProduct.review +1;
+
+    console.log(currentProduct);
+    await productService.update(currentProduct);
+    console.log("review successfully");
+    res.redirect("/product/"+req.params.id);
+  }
+  catch{
+    res.render("error");
+  }
+}

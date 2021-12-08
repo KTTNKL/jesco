@@ -14,3 +14,16 @@ exports.listProducts = (page, query) => {
 
 exports.totalProductNum = (query) => Product.find(query).countDocuments();
 exports.viewOne = (id) => Product.findOne({ _id: id }).lean();
+
+exports.update = (product) => {
+  Product.findOneAndUpdate(
+    { _id: product._id },
+    product,
+    { new: true },
+    (err, doc) => {
+      if (err) {
+        console.log(err);
+      }
+    }
+  );
+};

@@ -195,7 +195,7 @@
                                 <div class="ratting-form-wrapper pl-50">
                                     <h3>Add a Review</h3>
                                     <div class="ratting-form">
-                                        <form action="#">
+                                        <form action="{{product._id}}/review" method="POST">
                                             <div class="star-box">
                                                 <span>Your rating:</span>
                                                 <div class="rating-product">
@@ -209,17 +209,17 @@
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="rating-form-style">
-                                                        <input placeholder="Name" type="text" />
+                                                        <input placeholder="Name" type="text" name="name" value="{{user.username}}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6">
                                                     <div class="rating-form-style">
-                                                        <input placeholder="Email" type="email" />
+                                                        <input placeholder="Email" type="email" name="email" value="{{user.email_address}}"/>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-12">
                                                     <div class="rating-form-style form-submit">
-                                                        <textarea name="Your Review" placeholder="Message"></textarea>
+                                                        <textarea name="your_review" placeholder="Message"></textarea>
                                                         <button class="btn btn-primary btn-hover-color-primary "
                                                             type="submit" value="Submit">Submit</button>
                                                     </div>

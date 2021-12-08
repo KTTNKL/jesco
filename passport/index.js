@@ -16,7 +16,7 @@ passport.use(
 
 passport.serializeUser(function (user, done) {
   user._id = user._id.toString();
-  done(null, {_id:user._id,  username: user.username, email: user.email_address, address: user.address, phone: user.phone, password: user.password });
+  done(null, {_id:user._id,  username: user.username, email_address: user.email_address, address: user.address, phone: user.phone, password: user.password });
 });
 
 passport.deserializeUser(async function (user, done) {
