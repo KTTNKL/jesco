@@ -1,7 +1,7 @@
 const Product = require("./productModel");
 const PAGE_SIZE = 3;
 exports.listProducts = (page, query) => {
-  console.log(query);
+
   const Skip = (page - 1) * PAGE_SIZE;
   if (query.keyword) {
     query.$or = [
@@ -9,7 +9,11 @@ exports.listProducts = (page, query) => {
       { brand: { $regex: query.keyword, $options: "i" } },
     ];
   }
-  return Product.find(query).skip(Skip).limit(PAGE_SIZE);
+  let products = Product.find(query).skip(Skip).limit(PAGE_SIZE);
+  if (query.sort) {
+    products = products.sort(query.sort);
+  }
+  return products;
 };
 
 exports.totalProductNum = (query) => Product.find(query).countDocuments();
