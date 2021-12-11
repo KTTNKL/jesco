@@ -65,7 +65,10 @@
                     <div class="col col-lg-auto align-self-center pl-0">
                         <div class="header-actions">
                             {{#if user}}
-                                Hello, {{user.username}}
+                               <span>Hello, {{user.username}} </span> 
+                            {{/if}}
+                            {{#if user}}
+                            
                                 <a href="/logout">Sign Out</a>
                             {{else}}
                                 <a href="/login">Sign In</a>
@@ -306,9 +309,9 @@
                 <div class="modal-content">
                     <div class="modal-body">
                         <h2>Search Your Product</h2>
-                        <form class="navbar-form position-relative" role="search">
+                        <form class="navbar-form position-relative" role="search" action="/product">
                             <div class="form-group">
-                                <input type="text" class="form-control" placeholder="Search here...">
+                                <input type="text" class="form-control"  name="keyword" placeholder="Search here...">
                             </div>
                             <button type="submit" class="submit-btn"><i class="pe-7s-search"></i></button>
                         </form>

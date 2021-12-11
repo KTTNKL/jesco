@@ -78,6 +78,10 @@
 
                               </a>
                               <span class="badges">
+                                 {{#if this.sale}}
+                                <span class="sale">-{{this.sale}}%</span>
+                                
+                                {{/if}}
                                 <span class="new">{{this.gen}}</span>
                               </span>
                             </div>
@@ -87,9 +91,7 @@
                           <div class="content-desc-wrap">
                             <div class="content">
                               <span class="ratings">
-                                <span class="rating-wrap">
-                                  <span class="star" style="width: 100%"></span>
-                                </span>
+                                
                                 <span class="rating-num">(
                                   {{this.review}}
                                   Review )</span>

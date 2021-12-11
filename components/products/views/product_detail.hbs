@@ -112,7 +112,7 @@
             <div class="description-review-wrapper">
                 <div class="description-review-topbar nav">
                     <a data-bs-toggle="tab" href="#des-details2">Information</a>                
-                    <a data-bs-toggle="tab" href="#des-details3">Reviews (02)</a>
+                    <a data-bs-toggle="tab" href="#des-details3">Reviews ({{product.review}})</a>
                 </div>
                 <div class="tab-content description-review-bottom">
                     <div id="des-details2" class="tab-pane">
@@ -129,66 +129,31 @@
                         <div class="row">
                             <div class="col-lg-7">
                                 <div class="review-wrapper">
+                                  
+
+                                    {{#each product.review_detail}}
                                     <div class="single-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/review-image/1.png" alt="" />
-                                        </div>
+                                        
                                         <div class="review-content">
                                             <div class="review-top-wrap">
                                                 <div class="review-left">
                                                     <div class="review-name">
-                                                        <h4>White Lewis</h4>
+                                                        <h4>{{this.username}}</h4> 
                                                     </div>
-                                                    <div class="rating-product">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
+                                                    
                                                 </div>
-                                                <div class="review-left">
-                                                    <a href="#">Reply</a>
-                                                </div>
+                                                
                                             </div>
                                             <div class="review-bottom">
                                                 <p>
-                                                    Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                    cubilia Curae Suspendisse viverra ed viverra. Mauris ullarper
-                                                    euismod vehicula. Phasellus quam nisi, congue id nulla.
+                                                    {{this.comment}}
                                                 </p>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="single-review child-review">
-                                        <div class="review-img">
-                                            <img src="assets/images/review-image/2.png" alt="" />
-                                        </div>
-                                        <div class="review-content">
-                                            <div class="review-top-wrap">
-                                                <div class="review-left">
-                                                    <div class="review-name">
-                                                        <h4>White Lewis</h4>
-                                                    </div>
-                                                    <div class="rating-product">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="review-left">
-                                                    <a href="#">Reply</a>
-                                                </div>
-                                            </div>
-                                            <div class="review-bottom">
-                                                <p>Vestibulum ante ipsum primis aucibus orci luctustrices posuere
-                                                    cubilia Curae Sus pen disse viverra ed viverra. Mauris ullarper
-                                                    euismod vehicula.</p>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    {{/each}}
+
+
                                 </div>
                             </div>
                             <div class="col-lg-5">
@@ -196,27 +161,14 @@
                                     <h3>Add a Review</h3>
                                     <div class="ratting-form">
                                         <form action="{{product._id}}/review" method="POST">
-                                            <div class="star-box">
-                                                <span>Your rating:</span>
-                                                <div class="rating-product">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                </div>
-                                            </div>
+                                            
                                             <div class="row">
                                                 <div class="col-md-6">
                                                     <div class="rating-form-style">
                                                         <input placeholder="Name" type="text" name="name" value="{{user.username}}"/>
                                                     </div>
                                                 </div>
-                                                <div class="col-md-6">
-                                                    <div class="rating-form-style">
-                                                        <input placeholder="Email" type="email" name="email" value="{{user.email_address}}"/>
-                                                    </div>
-                                                </div>
+                                               
                                                 <div class="col-md-12">
                                                     <div class="rating-form-style form-submit">
                                                         <textarea name="your_review" placeholder="Message"></textarea>

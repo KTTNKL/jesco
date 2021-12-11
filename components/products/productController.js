@@ -51,6 +51,7 @@ exports.list = async function (req, res) {
   const sortString = sort != 0 ? "&sort=" + sort : "";
 
   const products = await productService.listProducts(page, query);
+
   let totalPage = await productService.totalProductNum(query);
   totalPage = Math.ceil(totalPage / 3);
   res.render("products/views/product", {
@@ -86,7 +87,7 @@ exports.item = async function (req, res) {
   try {
     const product = await productService.viewOne(ObjectId(req.params.id));
     product._id = product._id.toString();
-
+    console.log(product.review_detail);
     res.render("products/views/product_detail", { product });
   } catch {
     res.render("error");
