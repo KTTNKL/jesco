@@ -31,3 +31,10 @@ exports.update = (product) => {
     }
   );
 };
+
+
+exports.listRelatedProducts = (page, query) => {
+  const Skip = (page-1)*7;
+  let products = Product.find(query).skip(Skip).limit(7);
+  return products;
+}

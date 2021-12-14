@@ -19,6 +19,18 @@ exports.login = (req, res) => {
 exports.updateAccount = async function (req, res) {
   const user = req.body;
   try {
+    if (user.email_address) {
+      req.session.passport.user.email_address = user.email_address;
+    }
+    if (user.address) {
+      req.session.passport.user.address = user.address;
+
+    }
+    if (user.phone) {
+      req.session.passport.user.phone = user.phone;
+
+    }
+
     await userService.update(user);
     if (user["old-password"] !== "" && user["new-password"] !== "") {
       const isValid = await userService.validPassword(

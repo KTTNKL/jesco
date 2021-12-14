@@ -87,8 +87,19 @@ exports.item = async function (req, res) {
   try {
     const product = await productService.viewOne(ObjectId(req.params.id));
     product._id = product._id.toString();
-    console.log(product.review_detail);
-    res.render("products/views/product_detail", { product });
+    const query = {brand: product.brand};
+    Relatedproducts = await productService.listRelatedProducts(1, query);
+    console.log(Relatedproducts.length);
+    for(let i=0; i<Relatedproducts.length; i++){
+        if(Relatedproducts[i].name === product.name){
+          Relatedproducts.splice(i,1);
+        }
+    }
+    console.log("query:");
+    console.log(query);
+    console.log("list of related products:");
+    console.log(Relatedproducts);
+    res.render("products/views/product_detail", { product, Relatedproducts });
   } catch {
     res.render("error");
   }

@@ -201,17 +201,21 @@
             </div>
             <div class="new-product-slider swiper-container slider-nav-style-1 small-nav">
                 <div class="new-product-wrapper swiper-wrapper">
+                    {{#each Relatedproducts}}
                     <div class="new-product-item swiper-slide">
                         <!-- Single Prodect -->
                         <div class="product">
                             <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/8.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/6.jpg"
+                                <a href="/product/{{this._id}}" class="image">
+                                    <img src="{{this.image.[0]}}" alt="Product" />
+                                    <img class="hover-image" src="{{this.image.[1]}}"
                                         alt="Product" />
                                 </a>
                                 <span class="badges">
-                                    <span class="new">New</span>
+                                    <span class="new">{{this.gen}}</span>
+                                    {{#if this.sale}}
+                                     <span class="sale">-{{this.sale}}%</span>
+                                    {{/if}}
                                 </span>
 
                                 <button title="Add To Cart" class=" add-to-cart">Add
@@ -219,191 +223,18 @@
                             </div>
                             <div class="content">
                                 <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 100%"></span>
-                                    </span>
-                                    <span class="rating-num">( 5 Review )</span>
+                                    <span class="rating-num">( {{this.review}} Review )</span>
                                 </span>
-                                <h5 class="title"><a href="/product_detail">Women's Elizabeth
-                                        Coat
+                                <h5 class="title"><a href="/product/{{this._id}}">{{this.name}}
                                     </a>
                                 </h5>
                                 <span class="price">
-                                    <span class="new">$38.50</span>
+                                    <span class="new">$ {{this.price}}</span>
                                 </span>
                             </div>
                         </div>
-                    </div>
-                    <div class="new-product-item swiper-slide">
-                        <!-- Single Prodect -->
-                        <div class="product">
-                            <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/9.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/5.jpg"
-                                        alt="Product" />
-                                </a>
-                                <span class="badges">
-                                    <span class="sale">-10%</span>
-                                    <span class="new">New</span>
-                                </span>
-
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
-                            </div>
-                            <div class="content">
-                                <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 80%"></span>
-                                    </span>
-                                    <span class="rating-num">( 4 Review )</span>
-                                </span>
-                                <h5 class="title"><a href="/product_detail">Ardene Microfiber
-                                        Tights</a>
-                                </h5>
-                                <span class="price">
-                                    <span class="new">$38.50</span>
-                                    <span class="old">$48.50</span>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Single Prodect -->
-                    </div>
-                    <div class="new-product-item swiper-slide">
-                        <!-- Single Prodect -->
-                        <div class="product">
-                            <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/10.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/2.jpg"
-                                        alt="Product" />
-                                </a>
-                                <span class="badges">
-                                    <span class="sale">-7%</span>
-                                </span>
-
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
-                            </div>
-                            <div class="content">
-                                <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 90%"></span>
-                                    </span>
-                                    <span class="rating-num">( 4.5 Review )</span>
-                                </span>
-                                <h5 class="title"><a href="/product_detail">Women's Long
-                                        Sleeve
-                                        Shirts</a></h5>
-                                <span class="price">
-                                    <span class="new">$30.50</span>
-                                    <span class="old">$38.00</span>
-                                </span>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="new-product-item swiper-slide">
-                        <!-- Single Prodect -->
-                        <div class="product">
-                            <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/11.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/11.jpg"
-                                        alt="Product" />
-                                </a>
-                                <span class="badges">
-                                    <span class="new">Sale</span>
-                                </span>
-
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
-                            </div>
-                            <div class="content">
-                                <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 70%"></span>
-                                    </span>
-                                    <span class="rating-num">( 3.5 Review )</span>
-                                </span>
-                                <h5 class="title"><a href="/product_detail">Parrera
-                                        Sunglasses -
-                                        Lomashop</a></h5>
-                                <span class="price">
-                                    <span class="new">$38.50</span>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Single Prodect -->
-                    </div>
-                    <div class="new-product-item swiper-slide">
-                        <!-- Single Prodect -->
-                        <div class="product">
-                            <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/3.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/4.jpg"
-                                        alt="Product" />
-                                </a>
-                                <span class="badges">
-                                    <span class="sale">-10%</span>
-                                    <span class="new">New</span>
-                                </span>
-
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
-                            </div>
-                            <div class="content">
-                                <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 80%"></span>
-                                    </span>
-                                    <span class="rating-num">( 4 Review )</span>
-                                </span>
-                                <h5 class="title"><a href="/product_detail">Ardene Microfiber
-                                        Tights</a>
-                                </h5>
-                                <span class="price">
-                                    <span class="new">$38.50</span>
-                                    <span class="old">$48.50</span>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Single Prodect -->
-                    </div>
-                    <div class="new-product-item swiper-slide">
-                        <!-- Single Prodect -->
-                        <div class="product">
-                            <div class="thumb">
-                                <a href="/product_detail" class="image">
-                                    <img src="assets/images/product-image/1.jpg" alt="Product" />
-                                    <img class="hover-image" src="assets/images/product-image/2.jpg"
-                                        alt="Product" />
-                                </a>
-                                <span class="badges">
-                                    <span class="new">New</span>
-                                </span>
-
-                                <button title="Add To Cart" class=" add-to-cart">Add
-                                    To Cart</button>
-                            </div>
-                            <div class="content">
-                                <span class="ratings">
-                                    <span class="rating-wrap">
-                                        <span class="star" style="width: 100%"></span>
-                                    </span>
-                                    <span class="rating-num">( 5 Review )</span>
-                                </span>
-                                <h5 class="title"><a href="/product_detail">Women's Elizabeth
-                                        Coat
-                                    </a>
-                                </h5>
-                                <span class="price">
-                                    <span class="new">$38.50</span>
-                                </span>
-                            </div>
-                        </div>
-                        <!-- Single Prodect -->
-                    </div>
+                    </div> 
+                    {{/each}}
                 </div>
                 <!-- Add Arrows -->
                 <div class="swiper-buttons">
