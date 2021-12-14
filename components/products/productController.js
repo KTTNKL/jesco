@@ -119,12 +119,10 @@ exports.review = async function (req, res) {
 }
 
 exports.order = async function (req, res) {
-
   if (!req.user) {
     res.redirect("/login");
   } else {
-    currentOrder = await orderService.viewOrder(req.body.userid);
-
+    currentOrder = await orderService.viewOrder(req.user._id);
     if (currentOrder === null) {
       const subtotal = req.body.price * req.body.quantity;
       const item = {
@@ -137,14 +135,12 @@ exports.order = async function (req, res) {
         status: "PROCESSING"
       }
       await orderService.makeOrder(req.body, item, subtotal);
-
     } else {
       //Add more 
       let isNewProduct = 1;
       for (let i = 0; i < currentOrder.item.length; ++i) {
         if (currentOrder.item[i].productName === req.body.productName) {
           currentOrder.item[i].subtotal = req.body.quantity * req.body.price;
-          console.log(req.body.price);
           currentOrder.total += (req.body.quantity - currentOrder.item[i].quantity) * req.body.price;
           currentOrder.item[i].quantity = Math.floor(req.body.quantity);
           isNewProduct = 0;
@@ -166,7 +162,6 @@ exports.order = async function (req, res) {
         currentOrder.total += subtotal;
         await orderService.updateOrder(currentOrder);
       }
-
     }
     res.redirect("/cart");
   }
