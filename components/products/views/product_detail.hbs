@@ -76,11 +76,11 @@
                         <p class="mt-30px mb-0">{{product.description}} </p>
                         <div class="pro-details-quality">
                             <form action="{{product._id}}/order" method="POST">
-                                <input type="hidden" name="userid" value=" {{user._id}}" />
-                                <input type="hidden" name="username" value=" {{user.username}}" />
-                                <input type="hidden" name="address" value=" {{user.address}}" />
-                                <input type="hidden" name="email_address" value=" {{user.email_address}}" />
-                                <input type="hidden" name="phone" value=" {{user.phone}}" />
+                                <input type="hidden" name="userid" value="{{user._id}}" />
+                                <input type="hidden" name="username" value="{{user.username}}" />
+                                <input type="hidden" name="address" value="{{user.address}}" />
+                                <input type="hidden" name="email_address" value="{{user.email_address}}" />
+                                <input type="hidden" name="phone" value="{{user.phone}}" />
 
                                 <input type="hidden" name="productName" value="{{product.name}}" />
                                 <input type="hidden" name="image" value="{{product.image.[0]}}" />
