@@ -2741,7 +2741,6 @@ body.offcanvas-open {
   box-shadow: none;
   text-transform: uppercase;
   display: inline-block;
-  margin-left: 10px;
   background: #fb5d5d;
   color: #fff;
   display: flex;

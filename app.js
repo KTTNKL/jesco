@@ -7,7 +7,7 @@ const session = require("express-session");
 var indexRouter = require("./routes/index");
 
 var productRouter = require("./components/products");
-
+var orderRouter = require("./components/order")
 var contactRouter = require("./routes/contact");
 var cartRouter = require("./routes/cart");
 var aboutRouter = require("./routes/about");
@@ -52,7 +52,7 @@ app.use("/product", express.static(path.join(__dirname, "public")));
 app.use("/product", productRouter);
 
 app.use("/contact", contactRouter);
-app.use("/cart", cartRouter);
+app.use("/cart", loggedInUserGuard, orderRouter);
 app.use("/about", aboutRouter);
 app.use("/checkout", checkoutRouter);
 

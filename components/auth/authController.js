@@ -1,9 +1,16 @@
 const userService = require("./userService");
 const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
-  const { username, email, password } = req.body;
-  const user = await userService.register(username, email, password);
-  res.redirect("/login");
+  const { username, email, password, confirm_password } = req.body;
+  if (password === confirm_password) {
+    const user = await userService.register(username, email, password);
+    res.redirect("/login");
+  }
+  else {
+    const wrongConfirm = true;
+    res.render("auth/views/login", { wrongConfirm });
+  }
+
 };
 
 exports.logout = (req, res) => {
@@ -43,7 +50,7 @@ exports.updateAccount = async function (req, res) {
         console.log("password changed successfully");
       }
     }
-  } catch (err) {}
+  } catch (err) { }
 
   res.render("auth/views/account", { user });
 };

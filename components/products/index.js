@@ -8,4 +8,7 @@ router.get("/:id", productController.item);
 
 router.post("/:id/review", productController.review)
 
+
+router.post("/:id/order", productController.order)
+
 module.exports = router;

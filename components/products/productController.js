@@ -87,18 +87,15 @@ exports.item = async function (req, res) {
   try {
     const product = await productService.viewOne(ObjectId(req.params.id));
     product._id = product._id.toString();
-    const query = {brand: product.brand};
+    const query = { brand: product.brand };
     Relatedproducts = await productService.listRelatedProducts(1, query);
     console.log(Relatedproducts.length);
-    for(let i=0; i<Relatedproducts.length; i++){
-        if(Relatedproducts[i].name === product.name){
-          Relatedproducts.splice(i,1);
-        }
+    for (let i = 0; i < Relatedproducts.length; i++) {
+      if (Relatedproducts[i].name === product.name) {
+        Relatedproducts.splice(i, 1);
+      }
     }
-    console.log("query:");
-    console.log(query);
-    console.log("list of related products:");
-    console.log(Relatedproducts);
+
     res.render("products/views/product_detail", { product, Relatedproducts });
   } catch {
     res.render("error");
@@ -110,9 +107,7 @@ exports.review = async function (req, res) {
   const product = req.body;
   currentProduct = await productService.viewOne(req.params.id);
   try {
-    console.log(product["name"]);
-    console.log(currentProduct);
-    console.log(currentProduct.review_detail);
+
     if (currentProduct.review_detail === undefined) {
       currentProduct.review_detail = new Array();
     }
@@ -124,10 +119,14 @@ exports.review = async function (req, res) {
 
     console.log(currentProduct);
     await productService.update(currentProduct);
-    console.log("review successfully");
     res.redirect("/product/" + req.params.id);
   }
   catch {
     res.render("error");
   }
+}
+
+exports.order = async function (req, res) {
+  console.log(req.body);
+  res.redirect("/cart");
 }
