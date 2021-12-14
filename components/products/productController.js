@@ -127,6 +127,7 @@ exports.order = async function (req, res) {
   if (currentOrder === null) {
     const subtotal = req.body.price * req.body.quantity;
     const item = {
+      productid: req.body.productid,
       image: req.body.image,
       productName: req.body.productName,
       price: req.body.prcie,
