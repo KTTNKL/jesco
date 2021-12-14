@@ -37,27 +37,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {{#each currentOrder.item}}
+                                   {{#each currentOrder.item}}
                                     <tr>
                                         <td class="product-thumbnail">
-                                            <a href="#"><img class="img-responsive ml-15px"
+                                            <a href="/product/{{this.productid}}"><img class="img-responsive ml-15px"
                                                     src="{{this.image}}" alt="" /></a>
                                         </td>
-                                        <td class="product-name"><a href="#">Product Name</a></td>
-                                        <td class="product-price-cart"><span class="amount">$60.00</span></td>
+                                        <td class="product-name"><a href="/product/{{this.productid}}">{{this.productName}}</a></td>
+                                        <td class="product-price-cart"><span class="amount">{{this.price}}$</span></td>
                                         <td class="product-quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box" type="text" name="qtybutton"
-                                                    value="1" />
-                                            </div>
+                                            {{this.quantity}}
                                         </td>
-                                        <td class="product-subtotal">$70.00</td>
+                                        <td class="product-subtotal">{{this.subtotal}}$</td>
                                         <td class="product-remove">
                                            
-                                            <a href="#"><i class="fa fa-times"></i></a>
+                                            <a href="/cart/{{this.productid}}/delete"><i class="fa fa-times"></i></a>
                                         </td>
                                     </tr>
-                                    {{#each}}
+                                    {{/each}}
                                 </tbody>
                             </table>
                         </div>
@@ -80,15 +77,9 @@
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
                                 </div>
-                                <h5>Total products <span>$260.00</span></h5>
-                                <div class="total-shipping">
-                                    <h5>Total shipping</h5>
-                                    <ul>
-                                        <li><input type="checkbox" /> Standard <span>$20.00</span></li>
-                                        <li><input type="checkbox" /> Express <span>$30.00</span></li>
-                                    </ul>
-                                </div>
-                                <h4 class="grand-totall-title">Grand Total <span>$260.00</span></h4>
+                                <h5>Total products <span>{{currentOrder.total}}$</span></h5>
+                                 <h5>Shipping Fee <span>{{currentOrder.shippingFee}}$</span></h5>
+                                <h4 class="grand-totall-title">Grand Total <span>{{grandTotal}} $</span></h4>
                                 <a href="/checkout">Proceed to Checkout</a>
                             </div>
                         </div>

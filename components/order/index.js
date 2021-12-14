@@ -4,5 +4,6 @@ const orderController = require("./orderController");
 /* GET home page. */
 router.get("/", orderController.list);
 
+router.get("/:id/delete", orderController.deleteItem);
 
 module.exports = router;

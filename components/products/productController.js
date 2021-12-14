@@ -120,37 +120,14 @@ exports.review = async function (req, res) {
 
 exports.order = async function (req, res) {
 
-  currentOrder = await orderService.viewOrder(req.body.userid);
-
-  if (currentOrder === null) {
-    const subtotal = req.body.price * req.body.quantity;
-    const item = {
-      productid: req.body.productid,
-      image: req.body.image,
-      productName: req.body.productName,
-      price: req.body.price,
-      quantity: req.body.quantity,
-      subtotal: subtotal,
-      status: "PROCESSING"
-    }
-    await orderService.makeOrder(req.body, item, subtotal);
-
+  if (req.body.userid === "") {
+    res.redirect("/login");
   } else {
-    //Add more 
-    let isNewProduct = 1;
-    for(let i= 0; i< currentOrder.item.length; ++i){
-      if(currentOrder.item[i].productName === req.body.productName){ 
-        currentOrder.item[i].subtotal = req.body.quantity * req.body.price;
-        console.log(req.body.price);
-        currentOrder.total  += (req.body.quantity - currentOrder.item[i].quantity)* req.body.price;
-        currentOrder.item[i].quantity = Math.floor(req.body.quantity);
-        isNewProduct =0;
-        await orderService.updateOrder(currentOrder);
-      }
-    }
-    if(isNewProduct === 1){
-      let subtotal = req.body.price * req.body.quantity;
-      const newitem = {
+    currentOrder = await orderService.viewOrder(req.body.userid);
+
+    if (currentOrder === null) {
+      const subtotal = req.body.price * req.body.quantity;
+      const item = {
         productid: req.body.productid,
         image: req.body.image,
         productName: req.body.productName,
@@ -159,11 +136,38 @@ exports.order = async function (req, res) {
         subtotal: subtotal,
         status: "PROCESSING"
       }
-      currentOrder.item.push(newitem);
-      currentOrder.total += subtotal; 
-      await orderService.updateOrder(currentOrder);
-    }
+      await orderService.makeOrder(req.body, item, subtotal);
 
+    } else {
+      //Add more 
+      let isNewProduct = 1;
+      for (let i = 0; i < currentOrder.item.length; ++i) {
+        if (currentOrder.item[i].productName === req.body.productName) {
+          currentOrder.item[i].subtotal = req.body.quantity * req.body.price;
+          console.log(req.body.price);
+          currentOrder.total += (req.body.quantity - currentOrder.item[i].quantity) * req.body.price;
+          currentOrder.item[i].quantity = Math.floor(req.body.quantity);
+          isNewProduct = 0;
+          await orderService.updateOrder(currentOrder);
+        }
+      }
+      if (isNewProduct === 1) {
+        let subtotal = req.body.price * req.body.quantity;
+        const newitem = {
+          productid: req.body.productid,
+          image: req.body.image,
+          productName: req.body.productName,
+          price: req.body.price,
+          quantity: req.body.quantity,
+          subtotal: subtotal,
+          status: "PROCESSING"
+        }
+        currentOrder.item.push(newitem);
+        currentOrder.total += subtotal;
+        await orderService.updateOrder(currentOrder);
+      }
+
+    }
+    res.redirect("/cart");
   }
-  res.redirect("/cart");
 }
