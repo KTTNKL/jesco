@@ -163,6 +163,9 @@ exports.order = async function (req, res) {
         await orderService.updateOrder(currentOrder);
       }
     }
-    res.redirect("/cart");
+    setTimeout(function () {
+      res.redirect("/cart");
+    }, 100);
+
   }
 }
