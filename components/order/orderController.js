@@ -10,8 +10,9 @@ exports.list = async function (req, res) {
 }
 
 exports.deleteItem = async function (req, res) {
-    const currentOrder = await orderService.viewOrder(req.user._id);
+    let currentOrder = await orderService.viewOrder(req.user._id);
     const updateItem = currentOrder.item.filter(function (el) { return el.productid != req.params.id });
-
+    currentOrder.item = updateItem;
+    await orderService.updateOrder(currentOrder);
     res.redirect("/cart")
 }
