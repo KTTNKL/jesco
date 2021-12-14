@@ -106,10 +106,35 @@
                                 <span class="new">{{this.price}} $</span>
                               </span>
 
+                             
+<form action="{{id}}/order" method="POST">
+                                <input type="hidden" name="userid" value="{{user._id}}" />
+                                <input type="hidden" name="username" value="{{user.username}}" />
+                               <input type="hidden" name="address" value="{{user.address}}" />
+                               <input type="hidden" name="email_address" value="{{user.email_address}}" />
+                               <input type="hidden" name="phone" value="{{user.phone}}" />
+                               <input type="hidden" name="quantity" value=1 />
+
+
+                              
+                                <input type="hidden" name="productid" value="{{id}}" />
+                                <input type="hidden" name="productName" value="{{name}}" />
+                                 {{#with image}}
+                                <input type="hidden" name="image" value="{{0}}" />
+                                {{/with}}
+                                <input type="hidden" name="price" value="{{price}}" />
+
+                                
+                                <input type="hidden" name="note" value="" />
+                                <input type="hidden" name="status" value="" />
+                                <input type="hidden" name="shippingFee" value=0 />
                               <button
                                 title="Add To Cart"
                                 class="add-to-cart"
+                                type="submit" 
+                                value="Submit"
                               >Add To Cart</button>
+                              </form>
                             </div>
                           </div>
                         </div>

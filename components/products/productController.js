@@ -120,7 +120,7 @@ exports.review = async function (req, res) {
 
 exports.order = async function (req, res) {
 
-  if (req.body.userid === "") {
+  if (!req.user) {
     res.redirect("/login");
   } else {
     currentOrder = await orderService.viewOrder(req.body.userid);
@@ -132,7 +132,7 @@ exports.order = async function (req, res) {
         image: req.body.image,
         productName: req.body.productName,
         price: req.body.price,
-        quantity: req.body.quantity,
+        quantity: Math.floor(req.body.quantity),
         subtotal: subtotal,
         status: "PROCESSING"
       }
