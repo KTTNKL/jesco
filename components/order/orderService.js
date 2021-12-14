@@ -1,20 +1,19 @@
 const orderModel = require("./orderModel");
 
-exports.makeOrder = async (order, subtotal) => {
+exports.makeOrder = async (order, item, subtotal) => {
     return orderModel.create({
         userid: order.userid,
         username: order.username,
         address: order.address,
         email: order.email_address,
         phone: order.phone,
-        productName: [order.productName],
-        image: [order.image],
-        price: [order.price],
+
+        item: [item],
+
         note: order.note,
-        status: order.status,
+
         shippingFee: order.shippingFee,
-        quantity: [order.quantity],
-        subtotal: [subtotal],
+
         total: subtotal
     });
 };

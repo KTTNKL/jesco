@@ -126,8 +126,15 @@ exports.order = async function (req, res) {
 
   if (currentOrder === null) {
     const subtotal = req.body.price * req.body.quantity;
-
-    await orderService.makeOrder(req.body, subtotal);
+    const item = {
+      image: req.body.image,
+      productName: req.body.productName,
+      price: req.body.prcie,
+      quantity: req.body.quantity,
+      subtotal: subtotal,
+      status: "PROCESSING"
+    }
+    await orderService.makeOrder(req.body, item, subtotal);
 
   } else {
     //Add more 
