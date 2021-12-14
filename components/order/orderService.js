@@ -20,3 +20,17 @@ exports.makeOrder = async (order, item, subtotal) => {
 
 
 exports.viewOrder = (id) => orderModel.findOne({ userid: id }).lean();
+
+exports.updateOrder = (order) => {
+    orderModel.findOneAndUpdate(
+      { _id: order._id },
+      order,
+      { new: true },
+      (err, doc) => {
+        if (err) {
+          console.log(err);
+        }
+      }
+    );
+  };
+  
