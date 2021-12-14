@@ -1,15 +1,7 @@
 const productService = require("./productService");
 const { ObjectId } = require("mongodb");
-const url = require("url");
-const queryString = require("querystring");
+const orderService = require("../order/orderService");
 
-// function getUrl(req) {
-//   var urlobj = url.parse(req.originalUrl);
-//   urlobj.protocol = req.protocol;
-//   urlobj.host = req.get("host");
-//   var requrl = url.format(urlobj);
-//   return requrl;
-// }
 exports.list = async function (req, res) {
   // try {
 
@@ -128,5 +120,19 @@ exports.review = async function (req, res) {
 
 exports.order = async function (req, res) {
   console.log(req.body);
+
+  currentOrder = await orderService.viewOrder(req.body.userid);
+  console.log(currentOrder);
+
+  if (currentOrder === null) {
+    const subtotal = req.body.price * req.body.quantity;
+
+    await orderService.makeOrder(req.body, subtotal);
+
+  } else {
+    //Add more 
+    console.log("add OK");
+
+  }
   res.redirect("/cart");
 }
