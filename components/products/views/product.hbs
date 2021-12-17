@@ -182,19 +182,19 @@
             <div class="sidebar-widget-category">
               <ul>
                   {{#if activeShirt}}
-                        <li><a href="/product/?category=T-shirt{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="" >T-Shirt </a></li>
+                        <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="" >T-Shirt </a></li>
                   {{else}}
                         <li><a href="/product/?category=T-shirt{{genString}}{{keywordString}}{{sortString}}"  class="" >T-Shirt </a></li>
                   {{/if}}
                   
                 {{#if activeJacket}}
-                <li><a href="/product/?category=Jacket{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="">Jacket </a></li>
+                <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="">Jacket </a></li>
                 {{else}}
                  <li><a href="/product/?category=Jacket{{genString}}{{keywordString}}{{sortString}}" class="">Jacket </a></li>
                 {{/if}}
 
                  {{#if activeBack}}
-                <li><a href="/product/?category=Backpack{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Backpack</a></li>
+                <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Backpack</a></li>
                 
                 {{else}}
                     <li><a href="/product/?category=Backpack{{genString}}{{keywordString}}{{sortString}}"  class="">Backpack</a></li>
@@ -202,25 +202,25 @@
                 {{/if}}
 
                  {{#if activeJeans}}
-                <li><a href="/product/?category=Jeans{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Jeans</a></li>
+                <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Jeans</a></li>
                 {{else}}
                   <li><a href="/product/?category=Jeans{{genString}}{{keywordString}}{{sortString}}"  class="">Jeans</a></li>
                 {{/if}}
 
                  {{#if activeShoe}}
-                <li><a href="/product/?category=Shoe{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="">Shoe </a></li>
+                <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}" style="color: #fb5d5d;" class="">Shoe </a></li>
                 {{else}}
                 <li><a href="/product/?category=Shoe{{genString}}{{keywordString}}{{sortString}}"  class="">Shoe </a></li>
                 {{/if}}
 
                 {{#if activeHoodie}}
-                <li><a href="/product/?category=Hoodie{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Hoodie</a></li>
+                <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Hoodie</a></li>
                 {{else}}
                  <li><a href="/product/?category=Hoodie{{genString}}{{keywordString}}{{sortString}}" class="">Hoodie</a></li>
                 {{/if}}
 
                 {{#if activePant}}
-                  <li><a href="/product/?category=Pant{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Pant</a></li>
+                  <li><a href="/product/?{{genString}}{{keywordString}}{{sortString}}"  style="color: #fb5d5d;" class="">Pant</a></li>
                   {{else}}
                   <li><a href="/product/?category=Pant{{genString}}{{keywordString}}{{sortString}}"   class="">Pant</a></li>
                 {{/if}}
@@ -235,7 +235,7 @@
             <div class="sidebar-widget-tag">
               <ul>
                  {{#if activePopular}}
-                <li><a href="/product/?gen=Popular{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
+                <li><a href="/product/?{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
   border-color: #fb5d5d;
   color: #fff;">Popular</a></li>
                  {{else}}
@@ -243,7 +243,7 @@
                   {{/if}}
 
                  {{#if activeNew}}
-                <li><a href="/product/?gen=New{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
+                <li><a href="/product/?{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
   border-color: #fb5d5d;
   color: #fff;">New</a></li>
                  {{else}}
@@ -251,7 +251,7 @@
                  {{/if}}
 
                  {{#if activeHot}}
-                <li><a href="/product/?gen=Hot{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
+                <li><a href="/product/?{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
   border-color: #fb5d5d;
   color: #fff;">Hot</a></li>
                   {{else}}
@@ -259,7 +259,7 @@
                  {{/if}}
 
                  {{#if activeLimited}}
-                <li><a href="/product/?gen=Limited{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
+                <li><a href="/product/?{{categoryString}}{{keywordString}}{{sortString}}" style="background-color: #fb5d5d;
   border-color: #fb5d5d;
   color: #fff;">Limited</a></li>
                   {{else}}

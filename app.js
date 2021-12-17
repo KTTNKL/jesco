@@ -16,7 +16,7 @@ var accountRouter = require("./routes/account");
 
 const authRouter = require("./components/auth");
 const loggedInUserGuard = require("./middlewares/loggedInUserGuard");
-
+const orderService = require("./components/order/orderService")
 const passport = require("./passport");
 
 var app = express();
@@ -39,11 +39,14 @@ app.use(session({ secret: process.env.SESSION_SECRET }));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use(function (req, res, next) {
+app.use(async function (req, res, next) {
   res.locals.user = req.user;
 
   next();
 });
+
+
+
 
 app.use("/", authRouter);
 app.use("/", indexRouter);

@@ -103,6 +103,8 @@
                 <span class="title">Cart</span>
                 <button class="offcanvas-close">×</button>
             </div>
+            {{#if user}}
+
             <div class="body customScroll">
                 <ul class="minicart-product-list">
                     <li>
@@ -114,26 +116,12 @@
                             <a href="#" class="remove">×</a>
                         </div>
                     </li>
-                    <li>
-                        <a href="/product_detail" class="image"><img src="assets/images/product-image/2.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="/product_detail" class="title">Long sleeve knee length</a>
-                            <span class="quantity-price">1 x <span class="amount">$43.28</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="/product_detail" class="image"><img src="assets/images/product-image/3.jpg"
-                                alt="Cart product Image"></a>
-                        <div class="content">
-                            <a href="/product_detail" class="title">Cool Man Wearing Leather</a>
-                            <span class="quantity-price">1 x <span class="amount">$37.34</span></span>
-                            <a href="#" class="remove">×</a>
-                        </div>
-                    </li>
                 </ul>
-            </div>
+            </div>         
+
+             {{else}}
+                <div> <a href="/login">Login</a> to add product to cart!</div>    
+             {{/if}}
             <div class="foot">
                 <div class="buttons mt-30px">
                     <a href="/cart" class="btn btn-dark btn-hover-primary mb-30px">view cart</a>
