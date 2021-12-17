@@ -18,15 +18,16 @@ const productSchema = new mongoose.Schema({
   weight: Number,
   dimensions: String,
   materials: String,
-  review:{ 
-    type:Number,
+  review: {
+    type: Number,
     default: 0
   },
-  review_detail:{
-    type: [{username:String, comment:String}],
+  review_detail: {
+    type: [{ username: String, comment: String }],
     default: [],
-  } ,
+  },
   gen: String,
+  saleNumber: { type: Number, default: 0 },
 });
 const product = mongoose.model("Product", productSchema);
 

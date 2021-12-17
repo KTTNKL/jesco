@@ -57,7 +57,7 @@ app.use("/product", productRouter);
 app.use("/contact", contactRouter);
 app.use("/cart", loggedInUserGuard, orderRouter);
 app.use("/about", aboutRouter);
-app.use("/checkout", checkoutRouter);
+app.use("/checkout", loggedInUserGuard, checkoutRouter);
 
 
 // catch 404 and forward to error handler
