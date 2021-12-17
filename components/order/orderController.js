@@ -3,8 +3,12 @@ const orderService = require("./orderService");
 
 exports.list = async function (req, res) {
     const currentOrder = await orderService.viewOrder(req.user._id);
-
-    const grandTotal = currentOrder.total + currentOrder.shippingFee;
+    let grandTotal;
+    if (currentOrder) {
+        grandTotal = currentOrder.total + currentOrder.shippingFee;
+    } else {
+        grandTotal = 0;
+    }
     res.render("order/views/cart", { currentOrder, grandTotal });
 }
 

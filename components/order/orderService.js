@@ -1,12 +1,12 @@
 const orderModel = require("./orderModel");
 
-exports.makeOrder = async (order, item, subtotal) => {
+exports.makeOrder = async (user,order, item, subtotal) => {
     return orderModel.create({
-        userid: order.userid,
-        username: order.username,
-        address: order.address,
-        email: order.email_address,
-        phone: order.phone,
+        userid: user._id,
+        username: user.username,
+        address: user.address,
+        email: user.email_address,
+        phone: user.phone,
 
         item: [item],
 
