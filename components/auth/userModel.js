@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   email_address: String,
   phone: String,
   address: String,
+  isBan: Boolean,
 });
 module.exports = mongoose.model("User", userSchema);
 

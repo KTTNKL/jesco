@@ -22,6 +22,7 @@ exports.register = async (username, email, password) => {
     username: username,
     email_address: email,
     password: passwordHash,
+    isBan: false,
   });
 };
 
