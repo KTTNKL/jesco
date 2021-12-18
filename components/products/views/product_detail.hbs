@@ -90,7 +90,9 @@
                                 <input type="hidden" name="note" value="" />
                                 <input type="hidden" name="status" value="" />
                                 <input type="hidden" name="shippingFee" value=0 />
-
+                                {{#if outOfStock}}
+                                <div>OUT OF STOCK ! </div>
+                                {{/if}}
                                 <div class="cart-plus-minus">
                                     <input class="cart-plus-minus-box" type="text" name="quantity" value="1" />
                                 </div>

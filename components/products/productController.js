@@ -1,7 +1,7 @@
 const productService = require("./productService");
 const { ObjectId } = require("mongodb");
 const orderService = require("../order/orderService");
-
+const alert = require('alert'); 
 exports.list = async function (req, res) {
   // try {
 
@@ -136,13 +136,22 @@ exports.order = async function (req, res) {
         status: "PROCESSING"
       }
       const curProduct= await productService.viewOne(req.body.productid);
-      if(!curProduct.saleNumber){
-        curProduct.saleNumber=req.body.quantity;
-      }else{
-        curProduct.saleNumber+=req.body.quantity;
+      console.log(curProduct.availability);
+      console.log(req.body.quantity);
+      if(Number(curProduct.availability) < Number(req.body.quantity)){
+        // alert("message");
+        // const outOfStock = true;
+        // res.redirect("/cart");
       }
-      await productService.update(curProduct);
-      await orderService.makeOrder(req.user, req.body, item, subtotal);
+      else{
+        if(!curProduct.saleNumber){
+          curProduct.saleNumber=req.body.quantity;
+        }else{
+          curProduct.saleNumber+=req.body.quantity;
+        }
+        await productService.update(curProduct);
+        await orderService.makeOrder(req.user, req.body, item, subtotal);
+      }
     } else {
       //Add more 
       let isNewProduct = 1;
@@ -150,9 +159,11 @@ exports.order = async function (req, res) {
         if (currentOrder.item[i].productName === req.body.productName) {
           currentOrder.item[i].subtotal = req.body.quantity * req.body.price;
           currentOrder.total += (req.body.quantity - currentOrder.item[i].quantity) * req.body.price;
+          const curProduct= await productService.viewOne(req.body.productid);
+          curProduct.saleNumber = curProduct.saleNumber + (Number(req.body.quantity) -Number(currentOrder.item[i].quantity));
           currentOrder.item[i].quantity = Math.floor(req.body.quantity);
           isNewProduct = 0;
-
+          await productService.update(curProduct);
           await orderService.updateOrder(currentOrder);
         }
       }
@@ -169,6 +180,13 @@ exports.order = async function (req, res) {
         }
         currentOrder.item.push(newitem);
         currentOrder.total += subtotal;
+        const curProduct= await productService.viewOne(req.body.productid);
+        if(!curProduct.saleNumber){
+          curProduct.saleNumber=req.body.quantity;
+        }else{
+          curProduct.saleNumber+=req.body.quantity;
+        }
+        await productService.update(curProduct);
         await orderService.updateOrder(currentOrder);
       }
     }
