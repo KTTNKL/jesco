@@ -125,9 +125,9 @@ exports.order = async function (req, res) {
     res.redirect("/login");
   } else {
     currentOrder = await orderService.viewOrder(req.user._id);
-    if (currentOrder === null) {
+    if (currentOrder === null || currentOrder.DateOfPurchase) {
       const subtotal = req.body.price * req.body.quantity;
-      let Getdate = new Date();
+
       const item = {
         productid: req.body.productid,
         image: req.body.image,
@@ -136,7 +136,7 @@ exports.order = async function (req, res) {
         quantity: Math.floor(req.body.quantity),
         subtotal: subtotal,
         status: "PROCESSING",
-        DateOfPurchase: Getdate,
+
       }
       const curProduct= await productService.viewOne(req.body.productid);
       console.log(curProduct.availability);
@@ -158,7 +158,9 @@ exports.order = async function (req, res) {
       }
 
     } else {
-      //Add more 
+
+      //Add more
+
       let isNewProduct = 1;
       for (let i = 0; i < currentOrder.item.length; ++i) {
         if (currentOrder.item[i].productName === req.body.productName) {
@@ -173,11 +175,9 @@ exports.order = async function (req, res) {
             var string = encodeURIComponent('true');
             res.redirect("/cart/?outofstock="+string);
           }else{
-            console.log(Number(req.body.quantity));
-            console.log(currentQuantity);
-            console.log(curProduct.availability);
+
             curProduct.availability += (currentQuantity-Number(req.body.quantity));
-            console.log(curProduct.availability);
+
             await productService.update(curProduct);
             await orderService.updateOrder(currentOrder);
             res.redirect("/cart");
@@ -186,7 +186,7 @@ exports.order = async function (req, res) {
       }
       if (isNewProduct === 1) {
         let subtotal = req.body.price * req.body.quantity;
-        let Getdate = new Date();
+
         const newitem = {
           productid: req.body.productid,
           image: req.body.image,
@@ -195,7 +195,7 @@ exports.order = async function (req, res) {
           quantity: req.body.quantity,
           subtotal: subtotal,
           status: "PROCESSING",
-          DateOfPurchase: Getdate,
+
         }
         currentOrder.item.push(newitem);
         currentOrder.total += subtotal;

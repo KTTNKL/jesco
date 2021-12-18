@@ -59,6 +59,8 @@ app.use("/cart", express.static(path.join(__dirname, "public")));
 
 app.use("/cart", loggedInUserGuard, orderRouter);
 app.use("/about", aboutRouter);
+
+app.use("/checkout", express.static(path.join(__dirname, "public")));
 app.use("/checkout", loggedInUserGuard, checkoutRouter);
 
 

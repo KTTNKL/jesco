@@ -19,7 +19,7 @@ exports.makeOrder = async (user,order, item, subtotal) => {
 };
 
 
-exports.viewOrder = (id) => orderModel.findOne({ userid: id }).lean();
+exports.viewOrder = (id) => orderModel.findOne({ userid: id ,DateOfPurchase:{ $exists: false }}).lean();
 
 exports.updateOrder = (order) => {
     orderModel.findOneAndUpdate(
