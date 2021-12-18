@@ -127,6 +127,7 @@ exports.order = async function (req, res) {
     currentOrder = await orderService.viewOrder(req.user._id);
     if (currentOrder === null) {
       const subtotal = req.body.price * req.body.quantity;
+      let Getdate = new Date();
       const item = {
         productid: req.body.productid,
         image: req.body.image,
@@ -134,7 +135,8 @@ exports.order = async function (req, res) {
         price: req.body.price,
         quantity: Math.floor(req.body.quantity),
         subtotal: subtotal,
-        status: "PROCESSING"
+        status: "PROCESSING",
+        DateOfPurchase: Getdate,
       }
       const curProduct= await productService.viewOne(req.body.productid);
       console.log(curProduct.availability);
@@ -164,12 +166,18 @@ exports.order = async function (req, res) {
           currentOrder.total += (req.body.quantity - currentOrder.item[i].quantity) * req.body.price;
           const curProduct= await productService.viewOne(req.body.productid);
           curProduct.saleNumber = curProduct.saleNumber + (Number(req.body.quantity) -Number(currentOrder.item[i].quantity));
+          const currentQuantity =  Number(currentOrder.item[i].quantity);
           currentOrder.item[i].quantity = Math.floor(req.body.quantity);
           isNewProduct = 0;
-          if(Number(curProduct.availability) < Number(req.body.quantity)){
+          if(Number(curProduct.availability) +Number(currentOrder.item[i].quantity) < Number(req.body.quantity)){
             var string = encodeURIComponent('true');
             res.redirect("/cart/?outofstock="+string);
           }else{
+            console.log(Number(req.body.quantity));
+            console.log(currentQuantity);
+            console.log(curProduct.availability);
+            curProduct.availability += (currentQuantity-Number(req.body.quantity));
+            console.log(curProduct.availability);
             await productService.update(curProduct);
             await orderService.updateOrder(currentOrder);
             res.redirect("/cart");
@@ -178,6 +186,7 @@ exports.order = async function (req, res) {
       }
       if (isNewProduct === 1) {
         let subtotal = req.body.price * req.body.quantity;
+        let Getdate = new Date();
         const newitem = {
           productid: req.body.productid,
           image: req.body.image,
@@ -185,7 +194,8 @@ exports.order = async function (req, res) {
           price: req.body.price,
           quantity: req.body.quantity,
           subtotal: subtotal,
-          status: "PROCESSING"
+          status: "PROCESSING",
+          DateOfPurchase: Getdate,
         }
         currentOrder.item.push(newitem);
         currentOrder.total += subtotal;

@@ -14,6 +14,7 @@ const orderSchema = new mongoose.Schema({
         quantity: Number,
         subtotal: Number,
         status: String,
+        DateOfPurchase: Date,
     }],
     total: Number,
     note: String,

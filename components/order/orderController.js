@@ -19,7 +19,7 @@ exports.deleteItem = async function (req, res) {
     const myItemToDelete = currentOrder.item.filter(function (el) { return el.productid == req.params.id });
 
     const curProduct= await productService.viewOne(req.params.id );
-    
+    curProduct.availability += myItemToDelete[0].quantity;
     curProduct.saleNumber-=myItemToDelete[0].quantity;
     await productService.update(curProduct);
     const newTotal = currentOrder.total - myItemToDelete[0].subtotal;
