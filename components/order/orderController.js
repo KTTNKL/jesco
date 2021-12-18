@@ -9,7 +9,9 @@ exports.list = async function (req, res) {
     } else {
         grandTotal = 0;
     }
-    res.render("order/views/cart", { currentOrder, grandTotal });
+    const outofstock=req.query.outofstock;
+
+    res.render("order/views/cart", { currentOrder, grandTotal,outofstock });
 }
 
 exports.deleteItem = async function (req, res) {

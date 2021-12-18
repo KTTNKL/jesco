@@ -120,6 +120,7 @@ exports.review = async function (req, res) {
 
 exports.order = async function (req, res) {
   let currentOrder;
+  let outOfStock=false;
   if (!req.user) {
     res.redirect("/login");
   } else {
@@ -139,9 +140,8 @@ exports.order = async function (req, res) {
       console.log(curProduct.availability);
       console.log(req.body.quantity);
       if(Number(curProduct.availability) < Number(req.body.quantity)){
-        // alert("message");
-        // const outOfStock = true;
-        // res.redirect("/cart");
+        var string = encodeURIComponent('true');
+        res.redirect("/cart/?outofstock="+string);
       }
       else{
         if(!curProduct.saleNumber){
@@ -149,9 +149,12 @@ exports.order = async function (req, res) {
         }else{
           curProduct.saleNumber+=req.body.quantity;
         }
+        curProduct.availability-=req.body.quantity;
         await productService.update(curProduct);
         await orderService.makeOrder(req.user, req.body, item, subtotal);
+        res.redirect("/cart");
       }
+
     } else {
       //Add more 
       let isNewProduct = 1;
@@ -163,8 +166,14 @@ exports.order = async function (req, res) {
           curProduct.saleNumber = curProduct.saleNumber + (Number(req.body.quantity) -Number(currentOrder.item[i].quantity));
           currentOrder.item[i].quantity = Math.floor(req.body.quantity);
           isNewProduct = 0;
-          await productService.update(curProduct);
-          await orderService.updateOrder(currentOrder);
+          if(Number(curProduct.availability) < Number(req.body.quantity)){
+            var string = encodeURIComponent('true');
+            res.redirect("/cart/?outofstock="+string);
+          }else{
+            await productService.update(curProduct);
+            await orderService.updateOrder(currentOrder);
+            res.redirect("/cart");
+          }
         }
       }
       if (isNewProduct === 1) {
@@ -186,13 +195,18 @@ exports.order = async function (req, res) {
         }else{
           curProduct.saleNumber+=req.body.quantity;
         }
-        await productService.update(curProduct);
-        await orderService.updateOrder(currentOrder);
+        if(Number(curProduct.availability) < Number(req.body.quantity)){
+          var string = encodeURIComponent('true');
+          res.redirect("/cart/?outofstock="+string);
+        }else{
+          curProduct.availability-=req.body.quantity;
+          await productService.update(curProduct);
+          await orderService.updateOrder(currentOrder);
+          res.redirect("/cart");
+        }
       }
+
     }
-    setTimeout(function () {
-      res.redirect("/cart");
-    }, 100);
 
   }
 }
