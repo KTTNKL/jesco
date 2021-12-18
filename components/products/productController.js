@@ -135,8 +135,6 @@ exports.order = async function (req, res) {
         price: req.body.price,
         quantity: Math.floor(req.body.quantity),
         subtotal: subtotal,
-        status: "PROCESSING",
-
       }
       const curProduct= await productService.viewOne(req.body.productid);
       console.log(curProduct.availability);
@@ -194,8 +192,6 @@ exports.order = async function (req, res) {
           price: req.body.price,
           quantity: req.body.quantity,
           subtotal: subtotal,
-          status: "PROCESSING",
-
         }
         currentOrder.item.push(newitem);
         currentOrder.total += subtotal;

@@ -13,9 +13,12 @@ exports.validPassword = (password, user) => {
   return bcrypt.compare(password, user.password);
 };
 
+
+
 exports.validPasswordForChangePass = (password, passwordInDatabase) => {
   return bcrypt.compare(password, passwordInDatabase);
 };
+
 exports.register = async (username, email, password) => {
   const passwordHash = await bcrypt.hash(password, 10);
   return userModel.create({

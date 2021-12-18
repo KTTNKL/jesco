@@ -65,7 +65,15 @@
                 </div>
                 <div class="col-lg-5 mt-md-30px mt-lm-30px ">
                     <div class="your-order-area">
-                        <h3>Your order</h3>
+                        {{#if isConfirmed}}             <h3  id="outofstock">Your order has been confirmed!</h3>
+
+                        {{/if}}
+                        {{#if isProcess}}             <h3  id="outofstock">Your order is already processed</h3>
+                        {{else}}
+                            <h3>Your order</h3>
+
+                        {{/if}}
+
                         <div class="your-order-wrap gray-bg-4">
                             <div class="your-order-product-info">
                                 <div class="your-order-top">
@@ -96,7 +104,7 @@
                                 <div class="your-order-total">
                                     <ul>
                                         <li class="order-total">Total</li>
-                                        <li>{{total}}</li>
+                                        <li>{{total}}$</li>
                                     </ul>
                                 </div>
                             </div>

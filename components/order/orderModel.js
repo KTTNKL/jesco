@@ -13,13 +13,13 @@ const orderSchema = new mongoose.Schema({
         price: Number,
         quantity: Number,
         subtotal: Number,
-        status: String,
-
     }],
     DateOfPurchase: Date,
     total: Number,
     note: String,
     shippingFee: Number,
+    status: String,
+
 
 });
 const order = mongoose.model("Order", orderSchema);

@@ -9,9 +9,18 @@ router.get('/', async function (req, res, next) {
 });
 router.get('/confirm', async function (req, res, next) {
   const curOrder = await orderService.viewOrder(req.user._id);
-  const total = curOrder.shippingFee + curOrder.total;
-  curOrder.DateOfPurchase = new Date();
-  await orderService.updateOrder(curOrder);
-  res.render('checkout', { curOrder, total });
+  let total;
+  let isProcess;
+  let isConfirmed=true;
+
+  if(curOrder){
+    const total = curOrder.shippingFee + curOrder.total;
+    curOrder.DateOfPurchase = new Date();
+    await orderService.updateOrder(curOrder);
+  }else{
+    isProcess=true;
+    isConfirmed=false;
+  }
+  res.render('checkout', { curOrder, total, isProcess,isConfirmed});
 });
 module.exports = router;

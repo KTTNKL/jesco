@@ -14,7 +14,10 @@ exports.makeOrder = async (user,order, item, subtotal) => {
 
         shippingFee: order.shippingFee,
 
-        total: subtotal
+        total: subtotal,
+
+        status: "PROCESSING"
+
     });
 };
 
