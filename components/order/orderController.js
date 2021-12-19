@@ -14,6 +14,23 @@ exports.list = async function (req, res) {
     res.render("order/views/cart", { currentOrder, grandTotal,outofstock });
 }
 
+exports.item = async function (req, res) {
+    const currentOrder = await orderService.viewOrderByID(req.params.id);
+    let grandTotal;
+    if (currentOrder) {
+        grandTotal = currentOrder.total + currentOrder.shippingFee;
+    } else {
+        grandTotal = 0;
+    }
+    currentOrder.item.map(el=>{
+        el.view=true;
+    })
+    const outofstock=req.query.outofstock;
+    const viewCart=true;
+    console.log(currentOrder);
+    res.render("order/views/cart", { currentOrder, grandTotal,outofstock ,viewCart});
+}
+
 exports.deleteItem = async function (req, res) {
     let currentOrder = await orderService.viewOrder(req.user._id);
     const myItemToDelete = currentOrder.item.filter(function (el) { return el.productid == req.params.id });

@@ -52,8 +52,13 @@
                                         </td>
                                         <td class="product-subtotal">{{this.subtotal}}$</td>
                                         <td class="product-remove">
-                                           
-                                            <a href="/cart/{{this.productid}}/delete"><i class="fa fa-times"></i></a>
+                                           {{#if this.view}}
+                                                                                      
+
+                                           {{else}}
+                                                                                            <a href="/cart/{{this.productid}}/delete"><i class="fa fa-times"></i></a>
+
+                                            {{/if}}
                                         </td>
                                     </tr>
                                     {{/each}}
@@ -73,8 +78,10 @@
                     </form>
                     <div class="row">
                    
-                       
-                        <div class="col-lg-4 col-md-12 mt-md-30px">
+                        {{#if viewCart}}
+
+                        {{else}}
+<div class="col-lg-4 col-md-12 mt-md-30px">
                             <div class="grand-totall">
                                 <div class="title-wrap">
                                     <h4 class="cart-bottom-title section-bg-gary-cart">Cart Total</h4>
@@ -85,6 +92,8 @@
                                 <a href="/checkout">Proceed to Checkout</a>
                             </div>
                         </div>
+                        {{/if}}
+                        
                     </div>
                 </div>
             </div>

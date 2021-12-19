@@ -72,20 +72,15 @@
                   </tr>
                 </thead>
                 <tbody>
+                  {{#each listOrder}}
                   <tr>
-                    <td>1</td>
-                    <td>May 10, 2018</td>
-                    <td><span class="success">Completed</span></td>
-                    <td>$25.00 for 1 item </td>
-                    <td><a href="/cart" class="view">view</a></td>
+                    <td>{{this.num}}</td>
+                    <td>{{this.DateOfPurchase}}</td>
+                    <td><span class="success">{{this.status}}</span></td>
+                    <td>{{this.total}}$ </td>
+                    <td><a href="/cart/{{this._id}}" class="view">view</a></td>
                   </tr>
-                  <tr>
-                    <td>2</td>
-                    <td>May 10, 2018</td>
-                    <td>Processing</td>
-                    <td>$17.00 for 1 item </td>
-                    <td><a href="/cart" class="view">view</a></td>
-                  </tr>
+                 {{/each}}
                 </tbody>
               </table>
             </div>

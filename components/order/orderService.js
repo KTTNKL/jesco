@@ -23,6 +23,9 @@ exports.makeOrder = async (user,order, item, subtotal) => {
 
 
 exports.viewOrder = (id) => orderModel.findOne({ userid: id ,DateOfPurchase:{ $exists: false }}).lean();
+exports.viewOrderByID = (id) => orderModel.findOne({ _id: id}).lean();
+
+exports.viewAllOrder = (id) => orderModel.find({ userid: id ,DateOfPurchase:{ $exists: true }}).lean();
 
 exports.updateOrder = (order) => {
     orderModel.findOneAndUpdate(

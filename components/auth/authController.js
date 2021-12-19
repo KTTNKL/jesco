@@ -1,5 +1,6 @@
 const userService = require("./userService");
 const bcrypt = require("bcrypt");
+const orderService=require("../order/orderService")
 exports.register = async (req, res) => {
   const { username, email, password, confirm_password } = req.body;
   const checkingUsername = await userService.findByUsername;
@@ -63,6 +64,14 @@ exports.updateAccount = async function (req, res) {
   res.render("auth/views/account", { user });
 };
 
-exports.viewAccount = (req, res) => {
-  res.render("auth/views/account");
+exports.viewAccount = async (req, res) => {
+  const listOrder=await orderService.viewAllOrder(req.user._id);
+  let count=1;
+  listOrder.map(order=>{
+    order._id=order._id.toString();
+    order.num=count;
+    count+=1;
+  })
+
+  res.render("auth/views/account",{listOrder});
 };
