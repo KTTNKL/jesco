@@ -1,2 +1,5 @@
 DATABASE=mongodb+srv://ktuong:123@cluster0.wdhew.mongodb.net/shoppper?retryWrites=true&w=majority
 SESSION_SECRET = my-super-secret-key
+SENDGRID_API_KEY = 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
+EMAIL_SENDER = le.ky.luong@gmail.com
+DOMAIN_NAME=http://localhost:3000

@@ -9,7 +9,6 @@ var indexRouter = require("./routes/index");
 var productRouter = require("./components/products");
 var orderRouter = require("./components/order")
 var contactRouter = require("./routes/contact");
-var cartRouter = require("./routes/cart");
 var aboutRouter = require("./routes/about");
 var checkoutRouter = require("./routes/checkout");
 var accountRouter = require("./routes/account");

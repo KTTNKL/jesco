@@ -3,9 +3,8 @@ const bcrypt = require("bcrypt");
 const orderService=require("../order/orderService")
 exports.register = async (req, res) => {
   const { username, email, password, confirm_password } = req.body;
-  const checkingUsername = await userService.findByUsername;
-  const checkingUserEmail = await userService.findByEmail;
-
+  const checkingUsername = await userService.findByUsername(username);
+  const checkingUserEmail = await userService.findByEmail(email);
   if(!checkingUserEmail && !checkingUsername){
     if (password === confirm_password) {
       const user = await userService.register(username, email, password);

@@ -6,6 +6,7 @@ const userSchema = new mongoose.Schema({
   phone: String,
   address: String,
   isBan: Boolean,
+  activationString: String,
 });
 module.exports = mongoose.model("User", userSchema);
 

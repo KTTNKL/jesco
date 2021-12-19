@@ -16,5 +16,5 @@ router.get("/logout", authController.logout);
 router.post("/register", authController.register);
 router.post("/account", authController.updateAccount);
 router.get('/account',loggedInUserGuard, authController.viewAccount);
-
+// router.get('/login/activate')
 module.exports = router;
