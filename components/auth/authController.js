@@ -74,3 +74,22 @@ exports.viewAccount = async (req, res) => {
 
   res.render("auth/views/account",{listOrder});
 };
+
+// exports.activate = async  (res, req, next) =>{
+//   const {email} = req.query;
+//   const activationString = req.query['activation-string'];
+//   const result = await userService.activate(email,activationString);
+//   if(result){
+//     const user = await userService.findByEmail(email);
+//     req.login(user, function(err){
+//       if(err){
+//         return next(err);
+//       }
+//       return res.redirect('/');
+//     });
+//   }
+//   else{
+//     return res.redirect('/');
+//   }
+  
+// };

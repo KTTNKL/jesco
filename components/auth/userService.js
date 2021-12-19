@@ -58,6 +58,23 @@ exports.register = async (username, email, password) => {
 
 };
 
+// exports.activate = async (email, activationString)=>{
+//   const user = await userModel.findOne({
+//     email, activationString,
+//   }).lean();
+//   if(!user){
+//     return false;
+//   }
+//   await userModel.updateOne({
+//     email, activationString,
+//   },{
+//     $set:{
+//       isBan: true,
+//     },
+//   });
+//   return true;
+// };
+
 exports.update = (user) => {
   userModel.findOneAndUpdate(
     { _id: user._id },
