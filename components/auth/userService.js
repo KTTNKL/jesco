@@ -9,6 +9,10 @@ exports.findByUsername = (username) => {
     .lean();
 };
 
+exports.findByEmail = (email) =>{
+  return userModel.findOne({email_address : email,}).lean();
+}
+
 exports.validPassword = (password, user) => {
   return bcrypt.compare(password, user.password);
 };

@@ -2,15 +2,23 @@ const userService = require("./userService");
 const bcrypt = require("bcrypt");
 exports.register = async (req, res) => {
   const { username, email, password, confirm_password } = req.body;
-  if (password === confirm_password) {
-    const user = await userService.register(username, email, password);
-    res.redirect("/login");
-  }
-  else {
-    const wrongConfirm = true;
-    res.render("auth/views/login", { wrongConfirm });
-  }
+  const checkingUsername = await userService.findByUsername;
+  const checkingUserEmail = await userService.findByEmail;
 
+  if(!checkingUserEmail && !checkingUsername){
+    if (password === confirm_password) {
+      const user = await userService.register(username, email, password);
+      res.redirect("/login");
+    }
+    else {
+      const wrongConfirm = true;
+      res.render("auth/views/login", { wrongConfirm });
+    }
+  }
+  else{
+    const duplicate = true;
+    res.render("auth/views/login", {duplicate});
+  }
 };
 
 exports.logout = (req, res) => {
