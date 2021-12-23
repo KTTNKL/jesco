@@ -8,7 +8,6 @@ var indexRouter = require("./routes/index");
 
 var productRouter = require("./components/products");
 var orderRouter = require("./components/order")
-var contactRouter = require("./routes/contact");
 var aboutRouter = require("./routes/about");
 var checkoutRouter = require("./routes/checkout");
 var accountRouter = require("./routes/account");
@@ -53,7 +52,6 @@ app.use("/product", express.static(path.join(__dirname, "public")));
 
 app.use("/product", productRouter);
 
-app.use("/contact", contactRouter);
 app.use("/cart", express.static(path.join(__dirname, "public")));
 
 app.use("/cart", loggedInUserGuard, orderRouter);
