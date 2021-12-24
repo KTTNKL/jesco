@@ -33,9 +33,14 @@ exports.login = (req, res) => {
 
 exports.updateAccount = async function (req, res) {
   const user = req.body;
+  let duplicateEmail = false;
   try {
     if (user.email_address) {
-      req.session.passport.user.email_address = user.email_address;
+      
+      const checkingUserEmail = await userService.findByEmail(user.email_address);
+      if(checkingUserEmail){
+        duplicateEmail = true;
+      }
     }
     if (user.address) {
       req.session.passport.user.address = user.address;
@@ -45,8 +50,10 @@ exports.updateAccount = async function (req, res) {
       req.session.passport.user.phone = user.phone;
 
     }
-
-    await userService.update(user);
+    if(!duplicateEmail){
+      req.session.passport.user.email_address = user.email_address;
+      await userService.update(user);
+    }
     if (user["old-password"] !== "" && user["new-password"] !== "") {
       const isValid = await userService.validPassword(
         user["old-password"],
@@ -60,7 +67,7 @@ exports.updateAccount = async function (req, res) {
     }
   } catch (err) { }
 
-  res.render("auth/views/account", { user });
+  res.render("auth/views/account", { user, duplicateEmail });
 };
 
 exports.viewAccount = async (req, res) => {
