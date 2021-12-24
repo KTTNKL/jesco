@@ -61,6 +61,9 @@
             {{#if duplicateEmail}}
                 <p style="color: red;">Email has been already registered. </p>
             {{/if}}
+            {{#if wrongPassword}}
+                <p style="color: red;">Confirm password unsuccessfully. </p>
+            {{/if}}
           </div>
           <div class="tab-pane fade" id="orders">
             <h4>Orders</h4>

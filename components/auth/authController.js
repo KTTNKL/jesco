@@ -34,12 +34,14 @@ exports.login = (req, res) => {
 exports.updateAccount = async function (req, res) {
   const user = req.body;
   let duplicateEmail = false;
+  let wrongPassword = false;
   try {
     if (user.email_address) {
-      
-      const checkingUserEmail = await userService.findByEmail(user.email_address);
-      if(checkingUserEmail){
-        duplicateEmail = true;
+      if(user.email_address !== req.session.passport.user.email_address ){
+        const checkingUserEmail = await userService.findByEmail(user.email_address);      
+        if(checkingUserEmail){
+          duplicateEmail = true;
+        }
       }
     }
     if (user.address) {
@@ -64,10 +66,13 @@ exports.updateAccount = async function (req, res) {
         await userService.update(user);
         console.log("password changed successfully");
       }
+      else{
+        wrongPassword = true;
+      }
     }
   } catch (err) { }
 
-  res.render("auth/views/account", { user, duplicateEmail });
+  res.render("auth/views/account", { user, duplicateEmail, wrongPassword});
 };
 
 exports.viewAccount = async (req, res) => {
